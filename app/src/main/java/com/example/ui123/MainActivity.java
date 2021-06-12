@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.ui123.R;
-import com.example.ui123.ui1;
+import com.example.ui123.Ui1;
 
 public class MainActivity extends AppCompatActivity {
     @Override

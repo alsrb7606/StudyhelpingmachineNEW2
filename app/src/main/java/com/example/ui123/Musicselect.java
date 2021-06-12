@@ -167,7 +167,7 @@ public class Musicselect extends AppCompatActivity {
         next2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Musicselect.this, ui1.class); // next버튼 누르면 ui2activity 시작됨.
+                Intent intent = new Intent(Musicselect.this, Ui1.class); // next버튼 누르면 ui2activity 시작됨.
                 //int형 musicselected intent ui1.class로 전달 key값: "musicselected"
                 intent.putExtra("musicselected1",  musicselected);
 
