@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.neurosky.AlgoSdk.NskAlgoDataType;
 import com.neurosky.AlgoSdk.NskAlgoSdk;
+import com.neurosky.AlgoSdk.NskAlgoType;
 import com.neurosky.connection.ConnectionStates;
 import com.neurosky.connection.DataType.MindDataType;
 import com.neurosky.connection.TgStreamHandler;
@@ -35,6 +36,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+
+import static android.util.Log.ASSERT;
 
 //MusicSelect에서 받은 음악데이터를 가지고 ui1액티비티에서 onPause메소드에서 뇌파에 따라
 //음악이 나오는 기능 구현하고
@@ -50,6 +53,12 @@ public class Ui1 extends AppCompatActivity {
     private TgStreamReader tgStreamReader;
     private BluetoothAdapter mBluetoothAdapter;
     private NskAlgoSdk nskAlgoSdk= new NskAlgoSdk();
+
+
+
+
+
+
     private TgStreamHandler callback;
     private static NskAlgoSdk.OnAttAlgoIndexListener mOnAttAlgoIndexListener;
 
@@ -338,7 +347,11 @@ public class Ui1 extends AppCompatActivity {
                         }
 
                             tgStreamReader = new TgStreamReader(mBluetoothAdapter, callback);
-                            tgStreamReader.setGetDataTimeOutTime(6);
+
+                            tgStreamReader.setRecordStreamFilePath("/data/data/com.example.ui123");
+
+                            tgStreamReader.setGetDataTimeOutTime(10);
+
 
 
                         if(tgStreamReader != null && tgStreamReader.isBTConnected()){
@@ -347,7 +360,7 @@ public class Ui1 extends AppCompatActivity {
                             tgStreamReader.stop();
                             tgStreamReader.close();
                         }
-                        tgStreamReader.setRecordStreamFilePath(Environment.getExternalStorageDirectory().getAbsolutePath());
+                        //tgStreamReader.setRecordStreamFilePath(Environment.getExternalStorageDirectory().getAbsolutePath());
 
 
                          //Environment.getExternalStorageDirectory().getAbsolutePath()
@@ -357,7 +370,8 @@ public class Ui1 extends AppCompatActivity {
                         tgStreamReader.connect();
                         tgStreamReader.connectAndStart();
 
-
+//                        int a1 = nskAlgoSdk.NskAlgoInit(NskAlgoType.NSK_ALGO_TYPE_ATT,"/data/data/com.example.ui123/Documents");
+//                        ASSERT(a1==0);
 
 
                         nskAlgoSdk.NskAlgoStart(false);
